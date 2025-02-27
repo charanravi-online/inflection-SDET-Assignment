@@ -13,3 +13,8 @@ def test_service_health():
     assert requests.get(f"{CAMPAIGN_URL}/health").status_code == 200
     assert requests.get(f"{TEMPLATE_URL}/health").status_code == 200
     assert requests.get(f"{RECIPIENT_URL}/health").status_code == 200
+
+def test_fetch_templates():
+    response = requests.get(f"{TEMPLATE_URL}/email/templates")
+    assert response.status_code == 200
+    assert "data" in response.json()
