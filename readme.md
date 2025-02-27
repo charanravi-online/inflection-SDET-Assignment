@@ -28,4 +28,4 @@
 
 - If you encounter issues, verify Python 3.11.1+, Docker Compose, and PowerShell execution policy are correctly configured.
 
-- Note that docker-compose-integrations.yml is not used due to unresolved issues.
+- Note that docker-compose-integrations.yml is not used due to unresolved issues which were popping up when the file was run. Which is why, I proceeded with the e2e compose.
