@@ -18,3 +18,8 @@ def test_fetch_templates():
     response = requests.get(f"{TEMPLATE_URL}/email/templates")
     assert response.status_code == 200
     assert "data" in response.json()
+
+def test_fetch_recipients():
+    response = requests.get(f"{RECIPIENT_URL}/recipients/lists")
+    assert response.status_code == 200
+    assert "data" in response.json()
