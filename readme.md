@@ -24,7 +24,10 @@
 
 - Ensure Docker Desktop is running before executing setup.ps1.
 
-- Stop Docker services after testing with docker-compose -f docker-compose-e2e.yml down.
+- Stop Docker services after testing with 
+    ```
+    docker-compose -f docker-compose-e2e.yml down
+    ```
 
 - If you encounter issues, verify Python 3.11.1+, Docker Compose, and PowerShell execution policy are correctly configured.
 
