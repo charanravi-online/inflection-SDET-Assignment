@@ -39,4 +39,11 @@ def campaign_details():
     campaign_data = response.json()["data"]
     yield campaign_data["id"], template_id, recipient_id, scheduled_time
 
-
+def test_create_campaign(campaign_details):
+    campaign_id, _, _, _ = campaign_details
+    response = requests.get(f"{CAMPAIGN_URL}/campaigns/{campaign_id}")
+    assert response.status_code == 200
+    assert "Test Campaign" in response.json()["data"]["campaignName"]  # Partial match due to UUID
+    assert response.json()["data"]["emailTemplateId"] is not None
+    assert response.json()["data"]["recipientListId"] is not None
+    assert response.json()["data"]["scheduledTime"] > int(time.time())
