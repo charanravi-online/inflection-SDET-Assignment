@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  mongodb:
+    image: 'mongo:4.0.0'
+    hostname: 'mongodb'
+    environment:
+      - 'MONGO_INITDB_DATABASE=campaign-scheduling'
+      - 'MONGO_INITDB_ROOT_PASSWORD=root'
+      - 'MONGO_INITDB_ROOT_USERNAME=root'
+    ports:
+      - '127.0.0.1:27017:27017'
+    volumes:
+      - 'mongodb_data_container:/data/db'
+
+  demo-campaign-scheduling:
+    image: 'inflectionengineering/demo-campaign-scheduling:latest'
+    environment:
+      - 'MONGO_URI=root:root@host.docker.internal:27017/campaign-scheduling?authSource=admin'
+      - 'EMAIL_TEMPLATES_URL=<REPLACE WITH URL>'
+      - 'RECIPIENT_LISTS_URL=<REPLACE WITH URL>'
+    ports:
+      - '127.0.0.1:7070:7070'
+
+volumes:
+  mongodb_data_container:
