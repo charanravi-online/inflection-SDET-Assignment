@@ -59,3 +59,10 @@ def test_select_recipient_list(campaign_details):
     print(json.dumps(response.json()))
     print(response.json()["data"]["recipientListId"])
     print(recipient_id)
+
+
+def test_choose_email_template(campaign_details):
+    campaign_id, template_id, _, _ = campaign_details
+    response = requests.get(f"{CAMPAIGN_URL}/campaigns/{campaign_id}")
+    assert response.status_code == 200
+    assert response.json()["data"]["emailTemplateId"] == template_id
