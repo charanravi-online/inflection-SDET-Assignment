@@ -66,3 +66,13 @@ def test_choose_email_template(campaign_details):
     response = requests.get(f"{CAMPAIGN_URL}/campaigns/{campaign_id}")
     assert response.status_code == 200
     assert response.json()["data"]["emailTemplateId"] == template_id
+
+
+def test_edit_campaign_name(campaign_details):
+    campaign_id, _, _, _ = campaign_details
+    new_name = f"Updated Test Campaign {uuid.uuid4()}"
+    response = requests.patch(f"{CAMPAIGN_URL}/campaigns/{campaign_id}/name", json={"campaignName": new_name})
+    assert response.status_code == 200
+    updated_response = requests.get(f"{CAMPAIGN_URL}/campaigns/{campaign_id}")
+    assert updated_response.status_code == 200
+    assert updated_response.json()["data"]["campaignName"] == new_name
